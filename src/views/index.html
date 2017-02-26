@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="pub/css/bootstrap.css">
+</head>
+<script>
+    window.onload = function(){
+        var oBtn = document.getElementById('btn');
+        var oBtn2 = document.getElementById('btn2');
+        var newWindow = null;
+        oBtn.onclick= function() {
+                //window.open返回被打开窗口的window对象
+                newWindow= window.open('https://www.baidu.com', '_blank');
+        }
+        oBtn2.onclick= function() {
+                newWindow.fresh();
+        }
+    }
+</script>
+<body>
+    <button id='btn'>new</button>
+    <button id='btn2'>fresh</button>
+    <div class='i-icon i-icon-bypwd2'></div>
+    <h3>Demo入口</h3>
+    <a href="#counter">计数器</a>
+    <!--<image src=''></image>-->
+    <!--<script src="pub/bundle.js"></script>-->
+</body>
+</html>
