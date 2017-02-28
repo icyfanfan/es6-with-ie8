@@ -1,0 +1,11 @@
+{
+    "presets": ["es2015"],
+    "plugins": [
+        // object字面变量表示中，保证key加上双引号
+    "transform-es3-property-literals",
+        // objcet.key => object["key"]，避免IE8 catch default作为保留字，使用.操作符报错
+    "transform-es3-member-expression-literals"
+        // 将 ES6 模块标准 转换成 Node.js 用的 CMD模块标准 暂时用不上
+    // "transform-es2015-modules-simple-commonjs"
+    ]
+}

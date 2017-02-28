@@ -1,25 +1,21 @@
 const path = require('path');
 const gulp = require('gulp');
-// clean流程用
-const rm = require('gulp-rimraf');
 const webpack = require('gulp-webpack');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
-const shell = require('gulp-shell');
 const spritesmith = require('gulp.spritesmith');
 const buffer = require('vinyl-buffer');
 const imagemin = require('gulp-imagemin');
 const connect = require('gulp-connect');
+const argv = require('yargs').argv;
 
-const webpackConfig = require('./webpack.config.js');
+var webpackConfig = require('./webpack.dev.config.js');
 
-const dest = './pub'
-
-// 任务-清理目录
-gulp.task('clean', (done) => {
-    return gulp.src(dest, { read: false }).pipe(rm());
-});
-
+// 构建模式
+if(argv.production){
+    console.log('production mode')
+    webpackConfig = require('./webpack.config.js');
+}
 
 // 任务-图片合并
 gulp.task('sprite', function() {
@@ -29,7 +25,7 @@ gulp.task('sprite', function() {
             imgName: 'sprite.png',//保存合并后图片的地址
             cssName: 'css/sprite.css',//保存合并后css样式的地址
             padding: 4, // 生成图片之间的间距
-            cssTemplate: __dirname + '/sprite.hbs',  // 生成css模板文件
+            cssTemplate: __dirname + '/configs/sprite.hbs',  // 生成css模板文件
             retinaSrcFilter: 'src/icons/png/*@x2.png',  // 该文件夹下，每个图片文件必须有一个@x2版本，且两个图片像素不能相同
             retinaImgName: 'sprite-x2.png', // 合并后保存图片地址
         }));
@@ -38,10 +34,10 @@ gulp.task('sprite', function() {
         spriteStream.img
             .pipe(buffer())
             .pipe(imagemin())
-            .pipe(gulp.dest('src/images'))
+            .pipe(gulp.dest('src/sprites'))
             .on('end', () =>
         spriteStream.css
-            .pipe(gulp.dest('src/images'))
+            .pipe(gulp.dest('src/sprites'))
             .on('end', () =>
         resolve()));
     });
@@ -49,8 +45,6 @@ gulp.task('sprite', function() {
 
 // 任务-webpack打包
 gulp.task('webpack',  function() {
-
-
   gulp.src("./src/javascript/page/index.js")
     .pipe(webpack(webpackConfig))
     .pipe(gulp.dest('./pub'))
@@ -58,22 +52,23 @@ gulp.task('webpack',  function() {
       throw err
     })
 });
+
 // 任务-构建打包
 gulp.task('build', ['sprite','webpack']);
 
-gulp.task('serve', [ "build"], function(){
+// 任务-开启devServer
+gulp.task('build-auto-reload', [ "build"], function(){
   browserSync({
     server: {
       baseDir: ''
     }
   });
-  gulp.watch(['*.html','pub/*.js'], reload);
+  gulp.watch(['entry/*.html','pub/*'], reload);
 })
 
-gulp.task('dev-ie8',['build'],function(){
+// 任务-开启silentServer
+gulp.task('build-no-reload',['build'],function(){
     connect.server();
 })
 
-gulp.task('server', function(){
-    connect.server();
-})
+
