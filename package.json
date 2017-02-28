@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build",
-    "server": "gulp dev-ie8"
+    "dev": "gulp build-auto-reload",
+    "dev-quite": "gulp build-no-reload",
+    "pro": "gulp build-no-reload --production"
   },
   "author": "icy",
   "license": "ISC",

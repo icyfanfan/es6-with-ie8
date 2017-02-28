@@ -22,7 +22,7 @@ gulp.task('sprite', function() {
     var spriteStream =  gulp.src('src/icons/png/*.png')//需要合并的图片地址
         .pipe(spritesmith({
             cssSpritesheetName: 'i-icon',  //对应sprite.hbs里spritesheet_info.name
-            imgName: 'sprite.png',//保存合并后图片的地址
+            imgName: 'img/sprite.png',//保存合并后图片的地址
             cssName: 'css/sprite.css',//保存合并后css样式的地址
             padding: 4, // 生成图片之间的间距
             cssTemplate: __dirname + '/configs/sprite.hbs',  // 生成css模板文件
@@ -56,11 +56,11 @@ gulp.task('webpack',  function() {
 // 任务-构建打包
 gulp.task('build', ['sprite','webpack']);
 
-// 任务-开启devServer
+// 任务-开启自动reload
 gulp.task('build-auto-reload', [ "build"], function(){
   browserSync({
     server: {
-      baseDir: ''
+      baseDir: '/entry'
     }
   });
   gulp.watch(['entry/*.html','pub/*'], reload);

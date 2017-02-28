@@ -28,7 +28,7 @@ module.exports =  function(options){
         //     { from: '/assets' }
         // ]),
         // 从bundle中抽取指定text到独立文件，这里配置css独立文件命名
-        new ExtractTextPlugin('css/[name]_[hash].css'),
+        new ExtractTextPlugin('[name]_[hash].css'),
         // 配置抽取公共代码
         // 公用模块和entry指定的基本类库都会打包到common.js中
         new CommonsChunkPlugin({

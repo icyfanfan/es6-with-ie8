@@ -15,7 +15,7 @@ loaders.push({
 // 图片
 loaders.push({
     test: /\.(png|jpg|gif)$/,
-　　 loader: 'url-loader?limit=8&name=img/[name]_[hash].[ext]'
+　　 loader: 'url-loader?limit=8&name=[name]_[hash].[ext]'
 });
 // mcss
 const ExtractTextPlugin = require("extract-text-webpack-plugin");

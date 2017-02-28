@@ -1,3 +1,6 @@
+/** 
+ * 原webpack配置，仅做参考，已废弃
+ */
 const path = require('path');
 const webpack = require('webpack');
 const argv = require('yargs').argv;
