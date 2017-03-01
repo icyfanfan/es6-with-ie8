@@ -7,6 +7,7 @@ const routeConfig = require('../config/routes');
 const restate = require( 'regular-state' );
 
 
+console.log('notest123456789')
 routeConfig.view = document.body;
 routeConfig.Component = Regular
 const router = restate( routeConfig );

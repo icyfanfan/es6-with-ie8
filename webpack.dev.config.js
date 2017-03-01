@@ -11,14 +11,18 @@ const viewPath = path.join(rootPath,'entry');
 const entry = require('./configs/entry.config.js');
 const output = require('./configs/output.config.js');
 const plugin = require('./configs/plugins.config.js');
+const modules = require('./configs/module.config.js');
 
 var config =  {
     entry: entry({path:'',extra:{base: ['regularjs','./src/javascript/base/polyfill.js']}}),
     output: output({path:distPath}),
-    module: require('./configs/module.config.js'),
+    module: modules({}),
     plugins: plugin({distPath:distPath,viewPath:viewPath,rootPath:rootPath}),
     devtool:'source-map',
     watch: true
 };
+
+// 开发模式使用cdn路径
+config.output.publicPath = "/pub/";
 
 module.exports = config;

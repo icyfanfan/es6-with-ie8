@@ -8,11 +8,13 @@ const buffer = require('vinyl-buffer');
 const imagemin = require('gulp-imagemin');
 const connect = require('gulp-connect');
 const argv = require('yargs').argv;
+const watch = require('gulp-watch');
 
 var webpackConfig = require('./webpack.dev.config.js');
 
 // 构建模式
 if(argv.production){
+    // 线上模式，参数--production
     console.log('production mode')
     webpackConfig = require('./webpack.config.js');
 }
@@ -45,30 +47,35 @@ gulp.task('sprite', function() {
 
 // 任务-webpack打包
 gulp.task('webpack',  function() {
-  gulp.src("./src/javascript/page/index.js")
-    .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest('./pub'))
-    .on("error", function(err){
-      throw err
-    })
+    gulp.src("./src/javascript/page/index.js")
+        .pipe(webpack(webpackConfig))
+        .pipe(gulp.dest('./pub'))
+        .on("error", function(err){
+        throw err
+        })
+    return;
 });
 
 // 任务-构建打包
 gulp.task('build', ['sprite','webpack']);
 
-// 任务-开启自动reload
-gulp.task('build-auto-reload', [ "build"], function(){
-  browserSync({
-    server: {
-      baseDir: '/entry'
-    }
-  });
-  gulp.watch(['entry/*.html','pub/*'], reload);
+// 任务-开启服务
+gulp.task('server',function(){
+    connect.server({ livereload: true});
+    gulp.start('watch');
 })
 
+// 任务-监控文件变化
+gulp.task('watch', function(){
+
+    watch(['./entry/*.*','./pub/**/*.*']).pipe(connect.reload())
+
+});
+
+// 任务-开启自动reload
+gulp.task('build-auto-reload', [ "build","server"]);
+
 // 任务-开启silentServer
-gulp.task('build-no-reload',['build'],function(){
-    connect.server();
-})
+gulp.task('build-no-reload',['build',"server"]);
 
 

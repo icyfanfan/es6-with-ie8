@@ -1,6 +1,5 @@
 import {addTodo} from '../action';
 import Base from './base';
-
 const tpl = `
     <form on-submit={this.onAdd($event)}>
         <input name='todo' type='text' r-model={value} />

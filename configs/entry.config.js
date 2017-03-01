@@ -8,7 +8,7 @@ module.exports = function(options){
 
     entry = options && options.extra && Object.assign({}, entry, options.extra);
     
-    console.log(entry);
+    // console.log(entry);
     
     return entry;
 };
