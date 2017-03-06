@@ -35,7 +35,7 @@ module.exports =  function(options){
             minChunks:2,
     }));
 
-    var htmlEntry = util.getEntry('src/views/*.hbs');
+    var htmlEntry = util.getEntry('src/views/!(config)/*.hbs');
     var pluginTem = {
         showErrors: true,
         inject: 'body',

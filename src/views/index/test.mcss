@@ -1,0 +1,4 @@
+@import '/src/icons/sprites/css/sprite.css';
+
+
+body{background-color:#fff;}

@@ -1,7 +1,7 @@
-import {increment,decrement} from '../action.js'
+import {increment,decrement} from 'base/action.js'
 
-const Base = require('../base/base');
-const store = require('../store');
+const Base = require('base/base');
+const store = require('base/store');
 
 const tpl = `
 <p>计数器</p>

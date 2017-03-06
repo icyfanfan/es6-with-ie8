@@ -1,5 +1,0 @@
-@import '../../sprites/css/sprite.css';
-
-@import './test2.mcss';
-
-body{background-color:#fff;}

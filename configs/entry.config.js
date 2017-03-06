@@ -2,7 +2,7 @@ const util = require('./util.js');
 
 // console.log(entry);
 module.exports = function(options){
-    var path = options.globPath || 'src/javascript/page/*.js';
+    var path = options.globPath || 'src/view/!(config)/*.js';
 
     var entry = util.getEntry(path);
 

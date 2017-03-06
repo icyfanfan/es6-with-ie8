@@ -16,15 +16,34 @@
 ## 目录结构
 
 ```
-├── README.md  // 读我
+├── README.md  
 ├── package.json  
-├── gulpfile.js  // gulp入口文件
-├── webpack.config.js  // webpack入口文件-线上
-├── entry  // 打包后的页面
+├── .eslintrc  
+├── .babelrc  
+├── .gitignore  
+├── package.json  
+├── gulpfile.js  
+├── webpack.config.js  
+├── webpack.dev.config.js  
+├── config  // 构建配置  
+├── entry  // 打包后的页面入口
 ├── pub  // 打包后的js,css,图片
+├── node_modules  // 依赖的npm包
 ├── src  // 源码目录
-│   ├── assets  // 依赖资源
-│   ├── javascript   // js源码目录
+│   ├── icons  // 图标（合并前）
+│   ├── sprites  // 图标（合并后），生成图标css
+│   ├── base   // Regular组件扩展，基础依赖
+│   ├── util   // 工具类
+│   ├── common   // 基础组件
+│   ├── specific   // 业务组件
+│   ├── module   // 页面模块
+│   ├── views   // 入口页面
 ```
 
 ## 基本说明
+```
+├── component  // 组件
+│   ├── component.js  // 组件逻辑
+│   ├── component.mcss  // 组件样式
+│   ├── component.rgl   // 组件模板，如果模板较小，可以合并放到逻辑文件中
+```

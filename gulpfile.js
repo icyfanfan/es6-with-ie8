@@ -36,10 +36,10 @@ gulp.task('sprite', function() {
         spriteStream.img
             .pipe(buffer())
             .pipe(imagemin())
-            .pipe(gulp.dest('src/sprites'))
+            .pipe(gulp.dest('src/icons/sprites'))
             .on('end', () =>
         spriteStream.css
-            .pipe(gulp.dest('src/sprites'))
+            .pipe(gulp.dest('src/icons/sprites'))
             .on('end', () =>
         resolve()));
     });

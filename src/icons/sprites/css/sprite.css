@@ -1,0 +1,28 @@
+.i-icon {
+    display: inline-block;
+    background-image: url(../img/sprite.png);
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    .i-icon {
+        background-image: url(../sprite-x2.png);
+        background-size: 76px 76px;
+    }
+}
+
+.i-icon-bypwd2 {
+    background-position: 0px 0px;
+    width: 36px;
+    height: 36px;
+}
+.i-icon-custom2 {
+    background-position: -40px 0px;
+    width: 36px;
+    height: 36px;
+}
+.i-icon-email2 {
+    background-position: 0px -40px;
+    width: 36px;
+    height: 36px;
+}

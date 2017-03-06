@@ -1,9 +1,9 @@
 // 入口
-require('../base/polyfill');
+require('base/polyfill');
 import './test.mcss';
 
 const Regular = require('regularjs');
-const routeConfig = require('../config/routes');
+const routeConfig = require('base/routes');
 const restate = require( 'regular-state' );
 
 
